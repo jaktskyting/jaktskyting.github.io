@@ -16,8 +16,8 @@ create table profiles
     website    text
 );
 
-alter table profiles
-    owner to supabase_admin;
+-- alter table profiles
+--     owner to supabase_admin;
 
 grant delete, insert, references, select, trigger, truncate, update on profiles to postgres;
 

@@ -18,8 +18,8 @@ create table hold
     updated_at          timestamp with time zone default (now() AT TIME ZONE 'utc'::text) not null
 );
 
-alter table hold
-    owner to supabase_admin;
+--alter table hold
+--    owner to supabase_admin;
 
 grant select, update, usage on sequence hold_hold_id_seq to postgres;
 
