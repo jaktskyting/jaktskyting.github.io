@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { supabase } from './supabaseClient'
+import { supabase } from '../supabaseClient'
 
-const SignUp = () => {
+const SignUpWithEmailAndPassword = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -61,4 +61,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp;
+export default SignUpWithEmailAndPassword;

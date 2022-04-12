@@ -3,17 +3,19 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./Login";
 import Landing from "./Landing";
-import SignUp from "./SignUp";
+import LoginWithEmailAndPassword from "./auth/LoginWithEmailAndPassword";
+import LoginWithMagicLink from "./auth/LoginWithMagicLink";
+import SignUpWithEmailAndPassword from "./auth/SignUpWithEmailAndPassword";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         {/* <Route path="/" element={<App />} /> */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<LoginWithEmailAndPassword />} />
+        {/* <Route path="/login" element={<LoginWithMagicLink />} /> */}
+        <Route path="/signup" element={<SignUpWithEmailAndPassword />} />
         <Route path="/" element={<Landing />} />
       </Routes>
     </BrowserRouter>
