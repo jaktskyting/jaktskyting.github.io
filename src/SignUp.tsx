@@ -1,16 +1,20 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { supabase } from './supabaseClient'
 
-const Auth = () => {
+const SignUp = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [email, setEmail] = useState<string>('')
-  
-  const handleLogin = async (email : string) => {
+  const [password, setPassword] = useState<string>('')
+  const navigate = useNavigate();
+
+  const handleSignUp = async (email : string, password : string) => {
     try {
       setLoading(true)
-      const { error } = await supabase.auth.signIn({ email })
+      const { user, error } = await supabase.auth.signUp({ email, password })
       if (error) throw error
-      alert('Check your email for the login link!')
+      console.log(user);
+      navigate("/landing");
     } catch (error : any) {
       alert(error.error_description || error.message)
     } finally {
@@ -22,7 +26,7 @@ const Auth = () => {
     <div className="row flex flex-center">
       <div className="col-6 form-widget">
         <h1 className="header">Supabase + React</h1>
-        <p className="description">Sign in via magic link with your email below</p>
+        <p className="description">Signup</p>
         <div>
           <input
             className="inputField"
@@ -33,15 +37,23 @@ const Auth = () => {
           />
         </div>
         <div>
+          <input
+            className="inputField"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div>
           <button
             onClick={(e) => {
               e.preventDefault()
-              handleLogin(email)
+              handleSignUp(email, password)
             }}
             className={'button block'}
             disabled={loading}
           >
-            {loading ? <span>Loading</span> : <span>Send magic link</span>}
+            {loading ? <span>Loading</span> : <span>Signup</span>}
           </button>
         </div>
       </div>
@@ -49,4 +61,4 @@ const Auth = () => {
   )
 }
 
-export default Auth;
+export default SignUp;
